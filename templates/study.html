@@ -78,7 +78,7 @@
        </header>
        <div class="hosting">
             <ul>
-                <li> <a id = "show-login" href = "#"> + Host STUDI</a> </li>
+                <li> <a id = "show-host" href = "#"> + Host STUDI</a> </li>
                 <li> <a href = "#"> + Join STUDI</a> </li>
                 
             </ul>
@@ -86,17 +86,17 @@
         <div class="popup">
             <div class="close-btn">&times;</div>
             <div class="form">
-                <h2>Log in</h2>
+                <h2>Host Session</h2>
                 <div class="form-element">
-                    <label form = "email">Email</label>
-                    <input type = "text" id = "email" placeholder = "Enter email">
+                    <label form = "class">Class</label>
+                    <input type = "text" id = "class" placeholder = "Enter Class">
                 </div>
                 <div class="form-element">
-                    <label for = "password">Password</label>
-                    <input type = "password" id = "password" placeholder = "Enter password">
+                    <label for = "location">Location</label>
+                    <input type = "location" id = "location" placeholder = "Enter location">
                 </div>
                 <div class="form-element">
-                    <button>Enter</button>
+                    <button>Start</button>
                 </div>
             </div>
         </div>
@@ -108,7 +108,7 @@
 <script>
     let btn = document.querySelector('#btn');
     let sidebar = document.querySelector('.sidebar');
-    document.querySelector("#show-login").addEventListener("click", function(){
+    document.querySelector("#show-host").addEventListener("click", function(){
         document.querySelector(".popup").classList.add("active");
     });
 

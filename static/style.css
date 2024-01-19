@@ -301,7 +301,7 @@ header{
     color: #222;
 }
 
-.popup .form .form-element input[type = "text"], .popup .form .form-element input[type = "password"] {
+.popup .form .form-element input[type = "text"], .popup .form .form-element input[type = "location"] {
     margin-top: 5px;
     display: block;
     width: 100%;
@@ -322,5 +322,6 @@ header{
     color: #f5f5f5;
     border-radius: 10px;
     cursor:pointer;
+    padding: 0rem;
 }
 
