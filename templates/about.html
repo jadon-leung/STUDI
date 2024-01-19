@@ -1,12 +1,95 @@
 <!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>About</title>
-        <link rel="stylesheet" href="{{ url_for('static', filename='styles/style.css') }}">
-    </head>
-    <body> 
-        <img src = "STUDI logo.png" width = "100px" alt = "STUDI logo">
-    </body>
-</html> 
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDI Web App</title>
+    <link rel="stylesheet" href="/static/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    
+    
+</head>
+
+<body>
+   
+   
+   
+   <div class = "sidebar">
+        <div class="top">
+            <div class="logo">
+                <img src = "STUDI logo.png" width = "100px" alt = "STUDI logo">
+            </div>
+            <i class = "bx bx-menu" id = "btn"></i>
+        </div>
+        <div class="user">
+            <img src = "user-regular-24.png" alt = "me" class = "user img">
+            <div>
+                <p class = "bold">Jadon</p>
+                <p>Admin</p>
+            </div>
+        </div>
+        <ul>
+            <li>
+                <a href = "/templates/about.html">
+                    <i class = "bx bx-clipboard"></i>
+                    <span class = "nav-item">About</span>
+                </a>
+                <span class = "tooltip">About</span>
+            </li>
+            <li>
+                <a href = "#">
+                    <i class = "bx bxs-grid-alt"></i>
+                    <span class = "nav-item">Dashboard</span>
+                </a>
+                <span class = "tooltip">Dashboard</span>
+            </li>
+            <li>
+                <a href = "#">
+                    <i class = "bx bx-book-open"></i>
+                    <span class = "nav-item">Study</span>
+                </a>
+                <span class = "tooltip">Study</span>
+            </li>
+            <li>
+                <a href = "#">
+                    <i class = "bx bx-chat"></i>
+                    <span class = "nav-item">Friends</span>
+                </a>
+                <span class = "tooltip">Friends</span>
+            </li>
+            <li>
+                <a href = "#">
+                    <i class = "bx bx-log-out"></i>
+                    <span class = "nav-item">Logout</span>
+                </a>
+                <span class = "tooltip">Logout</span>
+            </li>
+           
+        </ul>
+   </div>
+   
+    <div class = "main-content">
+        <header>
+            <div class="navbar">
+                <div class="logo"><a href="/templates/index.html">STUDI</a></div>
+            </div>
+            <div class="about-page">
+                <h1>This is a little bit about STUDI</h1>
+            </div>
+       </header>
+    </div>
+    
+</body>
+
+<script>
+    let btn = document.querySelector('#btn');
+    let sidebar = document.querySelector('.sidebar');
+
+    btn.onclick = function(){
+        sidebar.classList.toggle('active');
+    };
+</script>
+
+</html>
