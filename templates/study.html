@@ -85,17 +85,17 @@
         </div>
         
         <div class="popup">
-            <form  method="POST" action = "/templates/study.html">
+            <form  id = "myForm">
                 <div class="close-btn">&times;</div>
                 <div class="form">
                     <h2>Host Session</h2>
                     <div class="form-element">
                         <label form = "class">Class</label>
-                        <input name = "classes" type = "text" id = "class" placeholder = "Enter Class">
+                        <input type = "text" id = "class" placeholder = "Enter Class">
                     </div>
                     <div class="form-element">
-                        <label for = "location">Location</label>
-                        <input name = "locations" type = "location" id = "location" placeholder = "Enter Location">
+                        <label form = "location">Location</label>
+                        <input type = "location" id = "location" placeholder = "Enter Location">
                     </div>
                     <div class="form-element">
                         <label class = "switch">
@@ -116,7 +116,23 @@
     
 </body>
 
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
 <script>
+     const firebaseConfig = {
+        apiKey: "AIzaSyAQ1j9ImVzvO7w_V3jc0KznSV52c4ssJ5g",
+        authDomain: "studi-31486.firebaseapp.com",
+        databaseURL: "https://studi-31486-default-rtdb.firebaseio.com",
+        projectId: "studi-31486",
+        storageBucket: "studi-31486.appspot.com",
+        messagingSenderId: "919376410608",
+        appId: "1:919376410608:web:40c513b7bdee38fcb24f35",
+        measurementId: "G-JGVEH7P7CP"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    var database = firebase.database();
     let btn = document.querySelector('#btn');
     let sidebar = document.querySelector('.sidebar');
     document.querySelector("#show-host").addEventListener("click", function(){
@@ -129,7 +145,58 @@
 
     btn.onclick = function(){
         sidebar.classList.toggle('active');
+    
     };
-</script>
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+  // Listen for form submission
+  document.getElementById('myForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Ensure Firebase database is initialized and 'database' is defined
+    var database = firebase.database();
+
+    // Create a new user reference in 'Users' node
+    var newUserRef = database.ref('Sessions').push();
+
+    // Get values from inputs
+    var className = document.getElementById('class').value;
+    var userLocation = document.getElementById('location').value;
+    var isPrivate = document.querySelector('.switch input[type="checkbox"]').checked;
+
+    // Create an object for this data
+    var formData = {
+      class: className,
+      location: userLocation,
+      isPrivate: isPrivate  // Renamed to avoid using 'private'
+    };
+
+    // Set data for the new user in Firebase
+    newUserRef.set(formData, function(error) {
+      if (error) {
+        console.error("Data could not be saved." + error);
+      } else {
+        console.log("Data saved successfully.");
+        // Optional: Provide user feedback or redirection here
+      }
+    });
+  });
+});
+
+    
+   
+
+    // Get a reference to the database service
+   
+
+    // Reference to your storage location in Firebase
+    
+  
+
+   
+    </script>
+    
+
 
 </html>
