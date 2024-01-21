@@ -91,11 +91,11 @@
                     <h2>Host Session</h2>
                     <div class="form-element">
                         <label form = "class">Class</label>
-                        <input type = "text" id = "class" placeholder = "Enter Class">
+                        <input type = "text" id = "class" placeholder = "Enter Class" autocomplete = "off">
                     </div>
                     <div class="form-element">
                         <label form = "location">Location</label>
-                        <input type = "location" id = "location" placeholder = "Enter Location">
+                        <input type = "location" id = "location" placeholder = "Enter Location" autocomplete = "off">
                     </div>
                     <div class="form-element">
                         <label class = "switch">
@@ -106,7 +106,10 @@
                     </div>
                     <div class="form-element">
                         <!--<button>Start</button> -->
-                        <input type = "submit" value = "Start">
+                        <div class="bots">
+                            <input id = "start-button" type = "submit" value = "Start">
+
+                        </div>
                     </div>
                 </div>
             </form>
@@ -135,14 +138,17 @@
     var database = firebase.database();
     let btn = document.querySelector('#btn');
     let sidebar = document.querySelector('.sidebar');
+    let start_button = document.querySelector('#start-button');
     document.querySelector("#show-host").addEventListener("click", function(){
         document.querySelector(".popup").classList.add("active");
     });
-
+    document.querySelector("#start-button").addEventListener("click", function(){
+        document.querySelector(".popup").classList.remove('active');
+    });
     document.querySelector(".close-btn").addEventListener("click", function(){
         document.querySelector(".popup").classList.remove("active");
     });
-
+  
     btn.onclick = function(){
         sidebar.classList.toggle('active');
     
@@ -171,7 +177,8 @@
       location: userLocation,
       isPrivate: isPrivate  // Renamed to avoid using 'private'
     };
-
+    document.getElementById('class').value = "";
+    document.getElementById('location').value = "";
     // Set data for the new user in Firebase
     newUserRef.set(formData, function(error) {
       if (error) {
@@ -181,6 +188,7 @@
         // Optional: Provide user feedback or redirection here
       }
     });
+
   });
 });
 

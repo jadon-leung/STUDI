@@ -312,17 +312,42 @@ header{
 
 }
 
-.popup .form .form-element button{
+.popup .form .form-element input{
+    width: 100%;
+    height: 40px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    background: #e4e2e2;
+    /* color: #f5f5f5;  */
+    color:#000000;
+    border-radius: 10px;
+    cursor:pointer;
+    padding: 0rem;
+}
+
+#start-button{
     width: 100%;
     height: 40px;
     border: none;
     outline: none;
     font-size: 15px;
     background: #222;
-    color: #f5f5f5;
+    color: #f5f5f5; 
     border-radius: 10px;
     cursor:pointer;
     padding: 0rem;
+}
+
+#start-button:hover {
+    background-color: #ddd; 
+
+}
+
+#start-button:active {
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .switch{
@@ -387,6 +412,7 @@ input:focus + .slider {
   }
 
 .switch p{
-    margin-left: 65px;
-    margin-top: -10px;
+    margin-left: 70px;
+    margin-top: -35px;
 }
+
