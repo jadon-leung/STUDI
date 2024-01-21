@@ -83,31 +83,33 @@
                 
             </ul>
         </div>
+        
         <div class="popup">
-            <div class="close-btn">&times;</div>
-            <div class="form">
-                <h2>Host Session</h2>
-                <div class="form-element">
-                    <label form = "class">Class</label>
-                    <input type = "text" id = "class" placeholder = "Enter Class">
+            <form  method="POST" action = "/templates/study.html">
+                <div class="close-btn">&times;</div>
+                <div class="form">
+                    <h2>Host Session</h2>
+                    <div class="form-element">
+                        <label form = "class">Class</label>
+                        <input name = "classes" type = "text" id = "class" placeholder = "Enter Class">
+                    </div>
+                    <div class="form-element">
+                        <label for = "location">Location</label>
+                        <input name = "locations" type = "location" id = "location" placeholder = "Enter Location">
+                    </div>
+                    <div class="form-element">
+                        <label class = "switch">
+                            <input type = "checkbox">
+                            <span class = "slider round"></span>
+                            <p>Private</p>
+                        </label>
+                    </div>
+                    <div class="form-element">
+                        <!--<button>Start</button> -->
+                        <input type = "submit" value = "Start">
+                    </div>
                 </div>
-                <div class="form-element">
-                    <label for = "location">Location</label>
-                    <input type = "location" id = "location" placeholder = "Enter Location">
-                </div>
-                <div class="form-element">
-                    <label class = "switch">
-                        <input type = "checkbox">
-                        <span class = "slider round"></span>
-                        <p>Private</p>
-                    </label>
-                </div>
-                <div class="form-element">
-                    <button>Start</button>
-                </div>
-                
-               
-            </div>
+            </form>
         </div>
    </div>
 
