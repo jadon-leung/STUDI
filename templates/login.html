@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STUDI Web App</title>
+    <link rel="stylesheet" href="/static/menu.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+     
+    
+</head>
+
+<body>
+    <div class="nav-container">
+        <div class="navbar">
+            <h1 id = 'navbar-logo'>STUDI</h1>
+            <div class="menu-toggle" id = "mobile-menu">
+                <span class = "bar"></span>
+                <span class = "bar"></span>
+                <span class = "bar"></span>
+            </div>
+            <ul class = "nav-menu">
+                <li><a href = "/templates/home.html" class = "nav-links">Home</a></li>
+                <li><a href = "/templates/about.html" class = "nav-links">About Us</a></li>
+                <li><a href = "/templates/login.html" class = "nav-links">Log In</a></li>
+                <li><a href = "/templates/register.html" class = "nav-links">Register</a></li>
+            </ul>
+            
+        </div>
+    </div>
+    
+    <div class="popup">
+        <form  id = "myForm">
+            <div class="close-btn">&times;</div>
+            <div class="form">
+                <h2>Host Session</h2>
+                <div class="form-element">
+                    <label form = "class">Email</label>
+                    <input type = "text" id = "class" placeholder = "Enter Email" autocomplete = "off">
+                </div>
+                <div class="form-element">
+                    <label form = "location">Password</label>
+                    <input type = "location" id = "location" placeholder = "Enter Password" autocomplete = "off">
+                </div>
+                <div class="form-element">
+                    <label class = "switch">
+                        <input type = "checkbox">
+                        <span class = "slider round"></span>
+                        <p>Private</p>
+                    </label>
+                </div>
+                <div class="form-element">
+                    <!--<button>Start</button> -->
+                    <div class="bots">
+                        <input id = "log-in" type = "submit" value = "Start">
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+<script text = "module" src = "/scripts/firebase-config.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+<script>
+    let btn = document.querySelector('#btn');
+    let start_button = document.querySelector('#log-in');
+    document.querySelector("#start-button").addEventListener("click", function(){
+        document.querySelector(".popup").classList.remove('active');
+    });
+    btn.onclick = function(){
+        
+    };
+
+</script>
+
+</html>

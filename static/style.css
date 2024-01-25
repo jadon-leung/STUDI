@@ -265,12 +265,6 @@ header{
     transition: top 0ms ease-in-out 200ms, opacity 200 ms ease-in-out 0ms, transform 0ms ease-in-out 200ms;
 }
 
-.popup.active{
-    top: 50%;
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-}
-
 .popup .close-btn{
     position: absolute;
     top: 10px;
@@ -282,8 +276,17 @@ header{
     text-align: center;
     line-height: 15px;
     border-radius: 15px;
-    cursor:pointer;
+    cursor: pointer;
 }
+
+
+.popup.active{
+    top: 50%;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+
 
 .popup .form h2{
     text-align: center;
@@ -415,4 +418,3 @@ input:focus + .slider {
     margin-left: 70px;
     margin-top: -35px;
 }
-
