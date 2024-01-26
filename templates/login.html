@@ -7,9 +7,6 @@
     <title>STUDI Web App</title>
     <link rel="stylesheet" href="/static/menu.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
-
-     
-    
 </head>
 
 <body>
@@ -33,28 +30,33 @@
     
     <div class="popup">
         <form  id = "myForm">
-            <div class="close-btn">&times;</div>
+            <!-- <div class="close-btn">&times;</div> -->
             <div class="form">
-                <h2>Host Session</h2>
+                <h2>Log In</h2>
                 <div class="form-element">
-                    <label form = "class">Email</label>
-                    <input type = "text" id = "class" placeholder = "Enter Email" autocomplete = "off">
+                    <label form = "username">Username</label>
+                    <input type = "text" id = "username" placeholder = "Enter Username" autocomplete = "off">
                 </div>
                 <div class="form-element">
-                    <label form = "location">Password</label>
-                    <input type = "location" id = "location" placeholder = "Enter Password" autocomplete = "off">
+                    <label form = "password">Password</label>
+                    <input type = "password" id = "myPassword"  placeholder = "Enter Password" autocomplete = "off">
                 </div>
                 <div class="form-element">
-                    <label class = "switch">
-                        <input type = "checkbox">
+                    <!-- <label class = "switch">
+                         <input type = "checkbox">
                         <span class = "slider round"></span>
-                        <p>Private</p>
-                    </label>
+                        <p>Private</p> 
+                        
+                    </label> -->
+                    <div class="check">
+                        <input class ="checkbox" type="checkbox" onclick = "myFunction()"> Show Password
+                    </div>
+                     
                 </div>
                 <div class="form-element">
-                    <!--<button>Start</button> -->
+                    <!--<button>Start</button> -->  
                     <div class="bots">
-                        <input id = "log-in" type = "submit" value = "Start">
+                        <input id = "log-in" type = "submit" value = "Log In">
                     </div>
                 </div>
             </div>
@@ -63,19 +65,64 @@
 
 
 </body>
+
 <script text = "module" src = "/scripts/firebase-config.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
 
 <script>
-    let btn = document.querySelector('#btn');
-    let start_button = document.querySelector('#log-in');
-    document.querySelector("#start-button").addEventListener("click", function(){
-        document.querySelector(".popup").classList.remove('active');
-    });
-    btn.onclick = function(){
-        
+    
+    firebase.initializeApp(firebaseConfig);
+    var database = firebase.database();
+    let start_button = document.querySelector('#start-button');
+    function myFunction() {
+  var x = document.getElementById("myPassword");
+        if (x.type === "password") {
+            x.type = "text";
+        } else {
+            x.type = "password";
+        }
+    }
+    
+    document.addEventListener('DOMContentLoaded', function() {
+  // Listen for form submission
+  document.getElementById('myForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Ensure Firebase database is initialized and 'database' is defined
+    var database = firebase.database();
+
+    // Create a new user reference in 'Users' node
+
+    // Get values from inputs
+    var userName = document.getElementById('username').value;
+        var userPassword = document.getElementById('myPassword').value;
+
+    // Create an object for this data
+    var formData = {
+      username: userName,
+      password: userPassword,
     };
+
+    document.getElementById('username').value = "";
+    document.getElementById('myPassword').value = "";
+    
+    // Set data for the new user in Firebase
+    newUserRef.set(formData, function(error) {
+      if (error) {
+        console.error("Data could not be saved." + error);
+      } else {
+        console.log("Data saved successfully.");
+        window.location.href = '/templates/home.html';
+        // Optional: Provide user feedback or redirection here
+      }
+    });
+   
+
+  });
+});
+
+
 
 </script>
 

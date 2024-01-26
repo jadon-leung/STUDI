@@ -34,8 +34,8 @@
             <div class="form">
                 <h2>Register</h2>
                 <div class="form-element">
-                    <label form = "email">Email</label>
-                    <input type = "text" id = "email" placeholder = "Enter Email" autocomplete = "off">
+                    <label form = "username">Username</label>
+                    <input type = "text" id = "username" placeholder = "Enter Username" autocomplete = "off">
                 </div>
                 <div class="form-element">
                     <label form = "password">Password</label>
@@ -97,16 +97,16 @@
     var newUserRef = database.ref('Users').push();
 
     // Get values from inputs
-    var userName = document.getElementById('email').value;
+    var userName = document.getElementById('username').value;
     var userPassword = document.getElementById('myPassword').value;
 
     // Create an object for this data
     var formData = {
-      class: userName,
+      username: userName,
       password: userPassword,
     };
 
-    document.getElementById('email').value = "";
+    document.getElementById('username').value = "";
     document.getElementById('myPassword').value = "";
     
     // Set data for the new user in Firebase
