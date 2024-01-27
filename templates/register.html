@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -30,33 +31,27 @@
     
     <div class="popup">
         <form  id = "myForm">
-            <!-- <div class="close-btn">&times;</div> -->
             <div class="form">
                 <h2>Register</h2>
                 <div class="form-element">
-                    <label form = "username">Username</label>
-                    <input type = "text" id = "username" placeholder = "Enter Username" autocomplete = "off">
+                    <label form = "email">Email</label>
+                    <input type = "text" id = "email" name = "email" placeholder = "Enter Email" autocomplete = "off">
                 </div>
                 <div class="form-element">
                     <label form = "password">Password</label>
-                    <input type = "password" id = "myPassword"  placeholder = "Enter Password" autocomplete = "off">
+                    <input type = "password" id = "myPassword"  name = "password"  placeholder = "Enter Password" autocomplete = "off">
                 </div>
                 <div class="form-element">
-                    <!-- <label class = "switch">
-                         <input type = "checkbox">
-                        <span class = "slider round"></span>
-                        <p>Private</p> 
-                        
-                    </label> -->
+                    
                     <div class="check">
-                        <input class ="checkbox" type="checkbox" onclick = "myFunction()"> Show Password
+                        <input class ="checkbox" type="checkbox" name = "checkbox" onclick = "myFunction()"> Show Password
                     </div>
                      
                 </div>
                 <div class="form-element">
                     <!--<button>Start</button> -->  
                     <div class="bots">
-                        <input id = "register" type = "submit" value = "Register">
+                        <input id = "signUp" type = "submit" name = "signup_submit" value = "Sign Up">
                     </div>
                 </div>
             </div>
@@ -65,67 +60,66 @@
 
 
 </body>
-<script text = "module" src = "/scripts/firebase-config.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
 
-<script>
-    // let btn = document.querySelector('#btn');
-    // btn.onclick = function(){
-    // };
-    firebase.initializeApp(firebaseConfig);
-    var database = firebase.database();
-    let register_button = document.querySelector('#register');
-    function myFunction() {
-  var x = document.getElementById("myPassword");
-        if (x.type === "password") {
-            x.type = "text";
-        } else {
-            x.type = "password";
-        }
-    }
-    
-    document.addEventListener('DOMContentLoaded', function() {
-  // Listen for form submission
-  document.getElementById('myForm').addEventListener('submit', function(e) {
-    e.preventDefault();
+<script type = "module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+import { getDatabase, set, ref } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
 
-    // Ensure Firebase database is initialized and 'database' is defined
-    var database = firebase.database();
-
-    // Create a new user reference in 'Users' node
-    var newUserRef = database.ref('Users').push();
-
-    // Get values from inputs
-    var userName = document.getElementById('username').value;
-    var userPassword = document.getElementById('myPassword').value;
-
-    // Create an object for this data
-    var formData = {
-      username: userName,
-      password: userPassword,
+    const firebaseConfig = {
+        apiKey: "AIzaSyAQ1j9ImVzvO7w_V3jc0KznSV52c4ssJ5g",
+        authDomain: "studi-31486.firebaseapp.com",
+        databaseURL: "https://studi-31486-default-rtdb.firebaseio.com",
+        projectId: "studi-31486",
+        storageBucket: "studi-31486.appspot.com",
+        messagingSenderId: "919376410608",
+        appId: "1:919376410608:web:40c513b7bdee38fcb24f35",
+        measurementId: "G-JGVEH7P7CP"
     };
 
-    document.getElementById('username').value = "";
-    document.getElementById('myPassword').value = "";
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth(app);
     
-    // Set data for the new user in Firebase
-    newUserRef.set(formData, function(error) {
-      if (error) {
-        console.error("Data could not be saved." + error);
-      } else {
-        console.log("Data saved successfully.");
-        window.location.href = '/templates/home.html';
-        // Optional: Provide user feedback or redirection here
-      }
-    });
-    // document.querySelector("#register").addEventListener("click", function(){
-    //     window.location.href = '/templates/home.html';
-    // });
+    window.myFunction = function() {
+        var x = document.getElementById("myPassword");
+            if (x.type === "password") {
+                x.type = "text";
+            } else {
+                x.type = "password";
+            }
+    }
 
-  });
-});
+        document.getElementById('signUp').addEventListener('click', (e) => {
+            e.preventDefault();
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('myPassword').value;
 
+            createUserWithEmailAndPassword( auth, email, password)
+                .then((userCredential) => {
+                    // const user = userCredential.user;
+                    const user = userCredential.user;
+
+                    set(ref(database, 'users/' + user.uid) , {
+                        email: email
+                    })
+                    .then(() => {
+                        window.location.href = '/templates/home.html'; 
+
+                    })
+                    
+
+
+                })
+                .catch((error) => {
+                    console.error('Error setting user data in database:', error); // Debugging line
+                    alert(error.message); // Display actual error message
+      
+                });
+
+        });
+        
+        
 
 
 </script>

@@ -1,3 +1,9 @@
+import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js';
+import { getAuth, createUserWithEmailAndPassword } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js';
+import { getDatabase } from 'https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js';
+
+
+
 const firebaseConfig = {
     apiKey: "AIzaSyAQ1j9ImVzvO7w_V3jc0KznSV52c4ssJ5g",
     authDomain: "studi-31486.firebaseapp.com",
@@ -9,4 +15,8 @@ const firebaseConfig = {
     measurementId: "G-JGVEH7P7CP"
 };
 
-// export default firebaseConfig;
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const database = getDatabase(app);
+
+export { auth, createUserWithEmailAndPassword, database};

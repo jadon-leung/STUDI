@@ -170,7 +170,7 @@ svg{font-weight:bold;max-width:600px;height:100%;}
     padding: 0rem;
 }
 
-#register{
+#signUp{
     width: 100%;
     height: 40px;
     border: none;
@@ -183,7 +183,7 @@ svg{font-weight:bold;max-width:600px;height:100%;}
     text-align: center;
 }
 
-#log-in{
+#login{
     width: 100%;
     height: 40px;
     border: none;
@@ -196,25 +196,24 @@ svg{font-weight:bold;max-width:600px;height:100%;}
     text-align: center;
 }
 
-#register:hover {
+#signUp:hover {
     background-color: #ddd; 
 
 }
 
-#log-in:hover{
+#login:hover{
     background-color: #ddd;
 }
 
-#register:active {
+#signUp:active {
     top: 50%;
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
+    /* transform: translate(-50%, -50%) scale(1); */
 }
 
-#log-in:active{
+#login:active{
     top: 50%;
     opacity: 1;
-    transform: translate(-50%, -50%) scale(1); 
 }
 
 .switch{

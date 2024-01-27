@@ -20,7 +20,7 @@ def study():
 def login():
     return render_template('login.html')
 
-@app.route('/register')
+@app.route('/register', methods = ['POST'])
 def login():
     return render_template('regiter.html')
 
