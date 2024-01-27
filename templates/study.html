@@ -58,7 +58,7 @@
                 <span class = "tooltip">Friends</span>
             </li>
             <li>
-                <a href = "#">
+                <a onclick = "logout()" href = "#">
                     <i class = "bx bx-log-out"></i>
                     <span class = "nav-item">Logout</span>
                 </a>
@@ -115,14 +115,26 @@
 
     
 </body>
-<script text = "module" src = "/scripts/firebase-config.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
 
-<script>
+<script type = "module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-app.js";
+    import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-auth.js";
+    import { getDatabase, set, ref, update, push } from "https://www.gstatic.com/firebasejs/10.7.2/firebase-database.js";
 
-    firebase.initializeApp(firebaseConfig);
-    var database = firebase.database();
+    const firebaseConfig = {
+        apiKey: "AIzaSyAQ1j9ImVzvO7w_V3jc0KznSV52c4ssJ5g",
+        authDomain: "studi-31486.firebaseapp.com",
+        databaseURL: "https://studi-31486-default-rtdb.firebaseio.com",
+        projectId: "studi-31486",
+        storageBucket: "studi-31486.appspot.com",
+        messagingSenderId: "919376410608",
+        appId: "1:919376410608:web:40c513b7bdee38fcb24f35",
+        measurementId: "G-JGVEH7P7CP"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    const auth = getAuth(app);
     let btn = document.querySelector('#btn');
     let sidebar = document.querySelector('.sidebar');
     let start_button = document.querySelector('#start-button');
@@ -137,6 +149,8 @@
     });
   
     btn.onclick = function(){
+        console.log('Sidebar toggle clicked'); // Debugging line
+
         sidebar.classList.toggle('active');
     
     };
@@ -148,10 +162,9 @@
     e.preventDefault();
 
     // Ensure Firebase database is initialized and 'database' is defined
-    var database = firebase.database();
-
-    // Create a new user reference in 'Users' node
-    var newUserRef = database.ref('Sessions').push();
+   
+    const sessionRef = ref(database, 'Sessions');
+   
 
     // Get values from inputs
     var className = document.getElementById('class').value;
@@ -166,19 +179,33 @@
     };
     document.getElementById('class').value = "";
     document.getElementById('location').value = "";
-    // Set data for the new user in Firebase
-    newUserRef.set(formData, function(error) {
-      if (error) {
-        console.error("Data could not be saved." + error);
-      } else {
-        console.log("Data saved successfully.");
-        // Optional: Provide user feedback or redirection here
-      }
-    });
+    
+
+    set(push(sessionRef), formData)
+        .then(() => {
+            console.log("Session saved successfully.");
+            // Optional: Provide user feedback or redirection here
+        })
+        .catch((error) => {
+            console.error("Data could not be saved." + error);
+        });
 
   });
 });
+function logout(){
+        
+        signOut(auth).then(() => {
+                        alert('user loged out');
+                        window.location.href = "/templates/home.html";
 
+    }).catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        alert(errorMessage);
+        });
+ 
+    }
+    window.logout = logout; 
     
   
 

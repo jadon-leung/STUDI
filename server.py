@@ -12,7 +12,7 @@ def index():
 def about():
     return render_template('about.html')
 
-@app.route('/study')
+@app.route('/study', methods = ['PUSH'])
 def study():
     return render_template('study.html')
 
