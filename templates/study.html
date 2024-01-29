@@ -195,7 +195,6 @@
 function logout(){
         
         signOut(auth).then(() => {
-                        alert('user loged out');
                         window.location.href = "/templates/home.html";
 
     }).catch((error) => {
